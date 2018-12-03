@@ -9,5 +9,5 @@ Steps:
 1. Using pymongo connect and load batches of data, trying to get a cursor timeout
 
 ## Launch
-./init.sh
-python loop.py
+* `./init.sh`
+* `python loop.py`
