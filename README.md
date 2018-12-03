@@ -7,3 +7,7 @@ Steps:
 1. Insert test data 
 1. Set cursor timeout lower than default 10 minutes
 1. Using pymongo connect and load batches of data, trying to get a cursor timeout
+
+## Launch
+./init.sh
+python loop.py
