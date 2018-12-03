@@ -1,0 +1,25 @@
+{
+  "name": "{{chance.sentence({ words: 3 })}}",
+  "telephone": {
+    "$number": {
+      "min": 1111111111,
+      "max": 9999999999
+    }
+  },
+  "site": "{{chance.url()}}",
+  "photo": {
+    "blob": {"$binary": {length: 8096}}
+  },
+  "location": {
+    "$coordinates": {
+      "long_lim": [
+        48.5,
+        49
+      ],
+      "lat_lim": [
+        2.3,
+        2.4
+      ]
+    }
+  }
+}
