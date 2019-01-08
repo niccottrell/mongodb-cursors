@@ -1,12 +1,15 @@
 #!/bin/bash
 
 # (Optional) setup Python env
-# virtualenv --python=python3.7.1 venv
+virtualenv --python=python3.7.1 venv
 source venv/bin/activate
 pip install -r requirements.txt
 
 # Install correct version
-m 4.0.3
+m 4.0.5
+
+# Confirm version
+mongod --version
 
 # Launch Sharded cluster
 # mlaunch init --single --sharded 16 --mongos 16 --port 30000
