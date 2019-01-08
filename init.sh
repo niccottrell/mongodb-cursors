@@ -3,6 +3,8 @@
 # (Optional) setup Python env
 virtualenv --python=python3.7.1 venv
 source venv/bin/activate
+
+# Make Python libraries are available
 pip install -r requirements.txt
 
 # Install correct version
