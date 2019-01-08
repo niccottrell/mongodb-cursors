@@ -8,8 +8,8 @@ projection = {}
 batch_size = 50
 sleep_time = 3 # seconds
 doc_count = 0
-nct=False # True should avoid Cursor not found
-ctm=300000 # cursorTimeoutMillis (Default is 10 minutes)
+nct = False  # True should avoid Cursor not found
+ctm = 300000  # cursorTimeoutMillis (Default is 10 minutes)
 
 client = MongoClient(mongodb_uri, w="majority", socketTimeoutMS=600000,
                          waitQueueTimeoutMS=30000, readPreference='primary')
@@ -42,10 +42,10 @@ try:
     for doc in collection.find({}, projection, batch_size=batch_size, no_cursor_timeout=nct):
        doc_count += 1
        if doc_count % 10 == 0:
-         print("Count " + str(doc_count) + ": " + str(datetime.datetime.now()))
+           print("Count " + str(doc_count) + ": " + str(datetime.datetime.now()))
        time.sleep(sleep_time)
 except pymongo.errors.CursorNotFound as err:
-    print(err);
+    print(err)
     delta = datetime.datetime.now() - start
     deltaParams = divmod(delta.days * 86400 + delta.seconds, 60)
     print("Took %d minutes, %d seconds to fail" % deltaParams)

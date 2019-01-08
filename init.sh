@@ -1,3 +1,10 @@
+#!/bin/bash
+
+# (Optional) setup Python env
+# virtualenv --python=python3.7.1 venv
+source venv/bin/activate
+pip install -r requirements.txt
+
 # Install correct version
 m 4.0.3
 
@@ -19,10 +26,22 @@ sh.shardCollection("mydb.dummy", { telephone : 1 } )'
 #done
 
 # Generate data
+npm install -g mgeneratejs
 mgeneratejs -n 10000 template.json | mongoimport --uri mongodb://localhost:30000/mydb -c dummy
 
+# Generate more data in a subshell to trigger oplog turnover
+(
+   for (( c=1; c<=500; c++ ))
+   do
+     mgeneratejs -n 1000 template.json | mongoimport --uri mongodb://localhost:30000/mydb -c dummy
+     sleep 60 # sleep for a minute
+   done
+) &
+
 # Launch loop in python
-python loop.py
+python loop.py &
+# Launch change stream in separate python thread
+python cs.py &
 
 # Shut down cluster
 # mlaunch kill
